@@ -76,7 +76,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: minecraft_router
+  name: minecraft-router
 spec:
   type: LoadBalancer
   ports:
