@@ -13,7 +13,6 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      role: minecraft-sv
       app: minecraft
   template:
     metadata:
@@ -83,4 +82,4 @@ spec:
   - port: 25565
     targetPort: 25565
   selector:
-    role: minecraft-sv
+    app: minecraft
