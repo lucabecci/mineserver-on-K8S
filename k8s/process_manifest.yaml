@@ -82,6 +82,6 @@ spec:
   ports:
   - port: 25565
     targetPort: 25565
-    nodePort: 25565
+    nodePort: 30000
   selector:
     role: minecraft
