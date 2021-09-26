@@ -85,4 +85,4 @@ spec:
   - port: 25565
     targetPort: 25565
   selector:
-    app: minecraft
+    role: minecraft-sv
