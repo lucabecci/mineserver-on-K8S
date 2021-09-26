@@ -57,7 +57,6 @@ spec:
               value: "TRUE"
             - name: TYPE
               value: PAPER
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -73,3 +72,15 @@ spec:
   resources:
     requests:
       storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft_router
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 25565
+    targetPort: 25565
+  selector:
+    role: minecraft
