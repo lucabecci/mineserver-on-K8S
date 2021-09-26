@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: minecraft-server-pi
   namespace: minecraft
-  labels:
-    app: minecraft-server
 spec:
   strategy:
     type: RollingUpdate
@@ -14,36 +12,36 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: minecraft-server
+      app: minecraft-sv
   template:
     metadata:
       labels:
-        app: minecraft-server
+        app: minecraft-sv
     spec:
       volumes:
         - name: world
           persistentVolumeClaim:
             claimName: minecraft-world
       containers:
-        - name: minecraft-server
+        - name: minecraft
           image: joycelin79/cuberite
           tty: true
           imagePullPolicy: Always
           volumeMounts:
-          - name: world
-            mountPath: /app/cuberite/build-cuberite/Server/world
-            subPath: world
-          - name: world
-            mountPath: /app/cuberite/build-cuberite/Server/world_nether
-            subPath: world_nether
-          - name: world
-            mountPath: /app/cuberite/build-cuberite/Server/world_the_end
-            subPath: world_the_end
-          - name: world
-            mountPath: /app/cuberite/build-cuberite/Server/players
-            subPath: players
+            - name: world
+              mountPath: /app/cuberite/build-cuberite/Server/world
+              subPath: world
+            - name: world
+              mountPath: /app/cuberite/build-cuberite/Server/world_nether
+              subPath: world_nether
+            - name: world
+              mountPath: /app/cuberite/build-cuberite/Server/world_the_end
+              subPath: world_the_end
+            - name: world
+              mountPath: /app/cuberite/build-cuberite/Server/players
+              subPath: players
           ports:
-            - name: minecraft
+            - name: game-port
               containerPort: 25565
           resources:
             requests:
@@ -55,21 +53,5 @@ spec:
           env:
             - name: EULA
               value: "TRUE"
-            - name: MOTD
-              value: MINECRAFT-ON-CPP-AND-K8S
-          readinessProbe:
-            exec:
-              command:
-              - mcstatus
-              - 127.0.0.1
-              - ping
-            initialDelaySeconds: 30
-            periodSeconds: 30
-          livenessProbe:
-            exec:
-              command:
-              - mcstatus
-              - 127.0.0.1
-              - ping
-            initialDelaySeconds: 30
-            periodSeconds: 30
+            - name: TYPE
+              value: PAPER

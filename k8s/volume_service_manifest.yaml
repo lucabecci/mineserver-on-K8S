@@ -2,8 +2,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: minecraft-world
+  namespace: minecraft
   labels:
-    app: minecraft-server
+    app: minecraft-sv
   annotations:
     kubesailEditorUid: d5a17d82-ee38-4ef3-9447-bfc3e68ceb26
 spec:
@@ -11,4 +12,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 2Gi
