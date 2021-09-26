@@ -78,9 +78,10 @@ kind: Service
 metadata:
   name: minecraft-router
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 25565
     targetPort: 25565
+    nodePort: 25565
   selector:
     role: minecraft
