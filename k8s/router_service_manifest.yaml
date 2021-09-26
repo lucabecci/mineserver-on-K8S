@@ -1,14 +1,16 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: minecraft-router
   namespace: minecraft
   labels:
     app: minecraft-router
 spec:
-  type: NodePort
-  ports:
-    - port: 25565
-      nodePort: 30565
+  type: LoadBalancer
   selector:
     app: minecraft-sv
+  ports:
+    - name: minecraft-port
+      protocol: TCP
+      port: 30565
+      targetPort: 25565
