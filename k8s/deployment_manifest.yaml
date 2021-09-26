@@ -24,27 +24,24 @@ spec:
         - name: world
           persistentVolumeClaim:
             claimName: minecraft-world
-      volumeMounts:
-        - name: world
-          mountPath: /app/cuberite/build-cuberite/Server/world
-          subPath: world
-        - name: world
-          mountPath: /app/cuberite/build-cuberite/Server/world_nether
-          subPath: world_nether
-        - name: world
-          mountPath: /app/cuberite/build-cuberite/Server/world_the_end
-          subPath: world_the_end
-        - name: world
-          mountPath: /app/cuberite/build-cuberite/Server/players
-          subPath: players
       containers:
         - name: minecraft-server
           image: joycelin79/cuberite
           tty: true
           imagePullPolicy: Always
           volumeMounts:
-            - name: minecraft-data
-              mountPath:  /data
+          - name: world
+            mountPath: /app/cuberite/build-cuberite/Server/world
+            subPath: world
+          - name: world
+            mountPath: /app/cuberite/build-cuberite/Server/world_nether
+            subPath: world_nether
+          - name: world
+            mountPath: /app/cuberite/build-cuberite/Server/world_the_end
+            subPath: world_the_end
+          - name: world
+            mountPath: /app/cuberite/build-cuberite/Server/players
+            subPath: players
           ports:
             - name: minecraft
               containerPort: 25565
