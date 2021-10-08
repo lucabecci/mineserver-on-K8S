@@ -24,34 +24,25 @@ spec:
             claimName: minecraft-world
       containers:
         - name: minecraft
-          image: joycelin79/cuberite
+          image: minecraftservers/minecraft-server
           tty: true
           imagePullPolicy: Always
           volumeMounts:
             - name: world
-              mountPath: /app/cuberite/build-cuberite/Server/world
+              mountPath: ./minecraft-data:/data
               subPath: world
-            - name: world
-              mountPath: /app/cuberite/build-cuberite/Server/world_nether
-              subPath: world_nether
-            - name: world
-              mountPath: /app/cuberite/build-cuberite/Server/world_the_end
-              subPath: world_the_end
-            - name: world
-              mountPath: /app/cuberite/build-cuberite/Server/players
-              subPath: players
           ports:
             - name: game-port
               containerPort: 25565
           resources:
             requests:
-              cpu: 50m
-              memory: 100Mi
-            limits:
               cpu: 1
-              memory: 2Gi
+              memory: 1Gi
+            limits:
+              cpu: 2
+              memory: 8Gi
           env:
             - name: EULA
               value: "TRUE"
-            - name: TYPE
-              value: PAPER
+            - name: BUKKIT
+              value: BUKKIT
